@@ -21,8 +21,21 @@ export default function Home() {
             <Link href="/blog" className="rounded-xl border border-slate-900/20 px-4 py-2 text-sm font-medium text-slate-950">
               Read Buying Guides
             </Link>
-            <Link href="/login" className="rounded-xl border border-slate-900/20 px-4 py-2 text-sm font-medium text-slate-950">
-              Admin Login
+            <Link href="#what-you-get" className="rounded-xl border border-slate-900/20 px-4 py-2 text-sm font-medium text-slate-950">
+              See How It Works
+            </Link>
+            <Link href="#quick-answers" className="rounded-xl border border-slate-900/20 px-4 py-2 text-sm font-medium text-slate-950">
+              Quick Answers
+            </Link>
+          </div>
+
+          <div className="mt-5">
+            <Link
+              href="#what-you-get"
+              className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.14em] text-slate-900/65 hover:text-slate-900"
+            >
+              <span className="inline-block animate-bounce">v</span>
+              <span>Scroll for details</span>
             </Link>
           </div>
         </div>
@@ -49,7 +62,7 @@ export default function Home() {
           </article>
         </div>
 
-        <section className="grid gap-4 md:grid-cols-2">
+        <section id="what-you-get" className="grid gap-4 md:grid-cols-2">
           <article className="rounded-2xl border border-slate-900/10 bg-white/85 px-5 py-5">
             <p className="text-xs uppercase tracking-[0.16em] text-slate-900/60">What You Get</p>
             <h2 className="mt-1 text-2xl font-semibold tracking-tight text-slate-950">Built for faster buying decisions</h2>
@@ -74,7 +87,7 @@ export default function Home() {
           </article>
         </section>
 
-        <section className="rounded-2xl border border-slate-900/10 bg-white/85 px-5 py-5">
+        <section id="quick-answers" className="rounded-2xl border border-slate-900/10 bg-white/85 px-5 py-5">
           <p className="text-xs uppercase tracking-[0.16em] text-slate-900/60">Quick Answers</p>
           <h2 className="mt-1 text-2xl font-semibold tracking-tight text-slate-950">Common questions before buying</h2>
           <div className="mt-4 grid gap-3 md:grid-cols-3">
