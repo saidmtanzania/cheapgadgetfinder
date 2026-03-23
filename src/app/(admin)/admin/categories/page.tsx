@@ -26,10 +26,10 @@ export default async function CategoriesPage() {
     <main className="space-y-5">
       <h1 className="text-2xl font-semibold tracking-tight">Categories</h1>
 
-      <form action={createCategoryAction} className="grid gap-3 rounded-xl border border-amber-900/15 bg-orange-50/60 p-4 sm:grid-cols-3">
-        <input name="name" required placeholder="Category name" className="rounded-lg border border-amber-900/20 bg-white px-3 py-2" />
-        <input name="slug" required placeholder="category-slug" className="rounded-lg border border-amber-900/20 bg-white px-3 py-2" />
-        <select name="parentId" className="rounded-lg border border-amber-900/20 bg-white px-3 py-2">
+      <form action={createCategoryAction} className="grid gap-3 rounded-xl border border-slate-900/15 bg-slate-50/60 p-4 sm:grid-cols-3">
+        <input name="name" required placeholder="Category name" className="rounded-lg border border-slate-900/20 bg-white px-3 py-2" />
+        <input name="slug" required placeholder="category-slug" className="rounded-lg border border-slate-900/20 bg-white px-3 py-2" />
+        <select name="parentId" className="rounded-lg border border-slate-900/20 bg-white px-3 py-2">
           <option value="">No parent</option>
           {parentOptions.map((category) => (
             <option key={category.id} value={category.id}>
@@ -37,14 +37,14 @@ export default async function CategoriesPage() {
             </option>
           ))}
         </select>
-        <button type="submit" className="rounded-lg bg-amber-900 px-4 py-2 text-sm font-medium text-white sm:col-span-3">
+        <button type="submit" className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white sm:col-span-3">
           Create category
         </button>
       </form>
 
-      <section className="overflow-x-auto rounded-xl border border-amber-900/15">
+      <section className="overflow-x-auto rounded-xl border border-slate-900/15">
         <table className="w-full min-w-190 text-left text-sm">
-          <thead className="bg-orange-50 text-amber-900/70">
+          <thead className="bg-slate-50 text-slate-900/70">
             <tr>
               <th className="px-3 py-2">Name</th>
               <th className="px-3 py-2">Slug</th>
@@ -56,15 +56,15 @@ export default async function CategoriesPage() {
           </thead>
           <tbody>
             {categories.map((category) => (
-              <tr key={category.id} className="border-t border-amber-900/10">
-                <td className="px-3 py-2 font-medium text-amber-950">{category.name}</td>
+              <tr key={category.id} className="border-t border-slate-900/10">
+                <td className="px-3 py-2 font-medium text-slate-950">{category.name}</td>
                 <td className="px-3 py-2">{category.slug}</td>
                 <td className="px-3 py-2">{category.parent?.name ?? "-"}</td>
                 <td className="px-3 py-2">{category._count.products}</td>
                 <td className="px-3 py-2">{category._count.children}</td>
                 <td className="px-3 py-2">
                   {category._count.products > 0 ? (
-                    <span className="text-xs text-amber-900/65">In use</span>
+                    <span className="text-xs text-slate-900/65">In use</span>
                   ) : (
                     <form action={deleteCategoryAction}>
                       <input type="hidden" name="id" value={category.id} />

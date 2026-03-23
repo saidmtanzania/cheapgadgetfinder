@@ -32,7 +32,7 @@ export function RichTextField({
     editorProps: {
       attributes: {
         class:
-          "min-h-44 rounded-b-xl border border-amber-900/20 border-t-0 bg-white px-3 py-3 text-sm text-amber-950 focus:outline-none",
+          "min-h-44 rounded-b-xl border border-slate-900/20 border-t-0 bg-white px-3 py-3 text-sm text-slate-950 focus:outline-none",
       },
     },
     onUpdate: ({ editor }) => {
@@ -93,9 +93,9 @@ export function RichTextField({
 
   return (
     <div className="space-y-2 sm:col-span-2">
-      <label className="text-sm font-medium text-amber-950">{label}</label>
-      <div className="rounded-xl border border-amber-900/20 bg-orange-50/60 p-2">
-        <div className="flex flex-wrap gap-2 rounded-xl border border-amber-900/20 bg-white p-2">
+      <label className="text-sm font-medium text-slate-950">{label}</label>
+      <div className="rounded-xl border border-slate-900/20 bg-slate-50/60 p-2">
+        <div className="flex flex-wrap gap-2 rounded-xl border border-slate-900/20 bg-white p-2">
           {toolbarButtons.map((button) => (
             <button
               key={button.label}
@@ -103,8 +103,8 @@ export function RichTextField({
               onClick={button.onClick}
               className={`rounded-md border px-2 py-1 text-xs font-medium transition ${
                 button.active
-                  ? "border-amber-900 bg-amber-900 text-white"
-                  : "border-amber-900/20 bg-white text-amber-900"
+                  ? "border-slate-900 bg-slate-900 text-white"
+                  : "border-slate-900/20 bg-white text-slate-900"
               }`}
             >
               {button.label}
@@ -116,7 +116,7 @@ export function RichTextField({
       </div>
 
       <input type="hidden" name={name} value={value} />
-      <p className="text-xs text-amber-900/70">
+      <p className="text-xs text-slate-900/70">
         Tip: use headings and lists to keep product description clean and readable.
       </p>
     </div>

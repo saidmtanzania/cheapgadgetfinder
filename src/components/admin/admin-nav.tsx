@@ -16,7 +16,7 @@ export function AdminNav() {
         <Link
           key={item.href}
           href={item.href}
-          className="block rounded-xl border border-amber-900/15 bg-white/80 px-3 py-2 text-sm font-medium text-amber-950 transition hover:bg-amber-100/70"
+          className="block rounded-xl border border-slate-900/15 bg-white/80 px-3 py-2 text-sm font-medium text-slate-950 transition hover:bg-slate-100/70"
         >
           {item.label}
         </Link>

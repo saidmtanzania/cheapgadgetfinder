@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cheap Gadget Finder
 
-## Getting Started
+Affiliate-friendly gadget comparison platform with blog content, admin CMS, and AdSense-ready ad placements.
 
-First, run the development server:
+## Run Locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## AdSense Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. In `.env`, set:
 
-## Learn More
+```dotenv
+NEXT_PUBLIC_ADSENSE_CLIENT="ca-pub-your-publisher-id"
+NEXT_PUBLIC_ADSENSE_SLOT_HOME="your-home-slot-id"
+NEXT_PUBLIC_ADSENSE_SLOT_BLOG="your-blog-slot-id"
+NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE="your-article-slot-id"
+NEXT_PUBLIC_ADSENSE_SLOT_PRODUCT="your-product-slot-id"
+```
 
-To learn more about Next.js, take a look at the following resources:
+1. Update `public/ads.txt` with your real publisher ID:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```txt
+google.com, pub-your-publisher-id, DIRECT, f08c47fec0942fa0
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Deploy, then verify these public pages are accessible:
 
-## Deploy on Vercel
+- `/privacy-policy`
+- `/disclosure`
+- `/blog`
+- `/monitors`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Policy-Safe Monetization Checklist
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Keep ad labels visible ("Advertisement") and avoid deceptive placement near affiliate buttons.
+- Do not ask users to click ads or use incentivized wording.
+- Ensure meaningful original content exists before applying (guides, comparisons, product info).
+- Keep navigation, legal pages, and contact/privacy information easy to find.
+- Avoid placing ads in admin/auth areas or on low-content/thin pages.
+
+## Useful Commands
+
+```bash
+pnpm lint
+pnpm prisma:generate
+pnpm prisma:migrate
+pnpm prisma:seed
+```

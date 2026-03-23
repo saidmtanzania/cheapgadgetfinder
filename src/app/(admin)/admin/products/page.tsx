@@ -21,35 +21,35 @@ export default async function ProductsPage() {
     <main className="space-y-5">
       <h1 className="text-2xl font-semibold tracking-tight">Products</h1>
 
-      <form action={createProductAction} className="grid gap-3 rounded-xl border border-amber-900/15 bg-orange-50/60 p-4 sm:grid-cols-2">
-        <input name="name" required placeholder="Product name" className="rounded-lg border border-amber-900/20 bg-white px-3 py-2" />
-        <input name="slug" required placeholder="product-slug" className="rounded-lg border border-amber-900/20 bg-white px-3 py-2" />
-        <input name="image" placeholder="Image URL" className="rounded-lg border border-amber-900/20 bg-white px-3 py-2 sm:col-span-2" />
-        <input name="youtubeReviewUrl" placeholder="YouTube review URL" className="rounded-lg border border-amber-900/20 bg-white px-3 py-2 sm:col-span-2" />
+      <form action={createProductAction} className="grid gap-3 rounded-xl border border-slate-900/15 bg-slate-50/60 p-4 sm:grid-cols-2">
+        <input name="name" required placeholder="Product name" className="rounded-lg border border-slate-900/20 bg-white px-3 py-2" />
+        <input name="slug" required placeholder="product-slug" className="rounded-lg border border-slate-900/20 bg-white px-3 py-2" />
+        <input name="image" placeholder="Image URL" className="rounded-lg border border-slate-900/20 bg-white px-3 py-2 sm:col-span-2" />
+        <input name="youtubeReviewUrl" placeholder="YouTube review URL" className="rounded-lg border border-slate-900/20 bg-white px-3 py-2 sm:col-span-2" />
         <RichTextField
           name="description"
           label="Product Description"
           placeholder="Write formatted product description..."
         />
         <SpecsField name="specItems" label="Specifications" />
-        <select name="brandId" required className="rounded-lg border border-amber-900/20 bg-white px-3 py-2">
+        <select name="brandId" required className="rounded-lg border border-slate-900/20 bg-white px-3 py-2">
           <option value="">Select brand</option>
           {brands.map((brand) => (
             <option key={brand.id} value={brand.id}>{brand.name}</option>
           ))}
         </select>
-        <select name="categoryId" required className="rounded-lg border border-amber-900/20 bg-white px-3 py-2">
+        <select name="categoryId" required className="rounded-lg border border-slate-900/20 bg-white px-3 py-2">
           <option value="">Select category</option>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>{category.name}</option>
           ))}
         </select>
-        <button type="submit" className="rounded-lg bg-amber-900 px-4 py-2 text-sm font-medium text-white sm:col-span-2">Create product</button>
+        <button type="submit" className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white sm:col-span-2">Create product</button>
       </form>
 
-      <section className="overflow-x-auto rounded-xl border border-amber-900/15">
+      <section className="overflow-x-auto rounded-xl border border-slate-900/15">
         <table className="w-full min-w-180 text-left text-sm">
-          <thead className="bg-orange-50 text-amber-900/70">
+          <thead className="bg-slate-50 text-slate-900/70">
             <tr>
               <th className="px-3 py-2">Product</th>
               <th className="px-3 py-2">Brand</th>
@@ -61,10 +61,10 @@ export default async function ProductsPage() {
           </thead>
           <tbody>
             {products.map((product) => (
-              <tr key={product.id} className="border-t border-amber-900/10">
+              <tr key={product.id} className="border-t border-slate-900/10">
                 <td className="px-3 py-2">
                   <div className="flex items-center gap-3">
-                    <div className="h-11 w-16 overflow-hidden rounded-md bg-orange-100">
+                    <div className="h-11 w-16 overflow-hidden rounded-md bg-slate-100">
                       {product.image ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img src={product.image} alt={product.name} className="h-full w-full object-cover" />
@@ -79,7 +79,7 @@ export default async function ProductsPage() {
                 <td className="px-3 py-2">{product.slug}</td>
                 <td className="px-3 py-2">
                   <div className="flex gap-2">
-                    <Link href={`/admin/products/${product.id}`} className="rounded-md border border-amber-900/20 px-2 py-1 text-xs text-amber-900">
+                    <Link href={`/admin/products/${product.id}`} className="rounded-md border border-slate-900/20 px-2 py-1 text-xs text-slate-900">
                       Edit
                     </Link>
                     <form action={deleteProductAction}>

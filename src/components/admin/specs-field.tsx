@@ -43,30 +43,30 @@ export function SpecsField({ name, label, defaultSpecs = [] }: Props) {
   return (
     <div className="space-y-2 sm:col-span-2">
       <div className="flex items-center justify-between">
-        <label className="text-sm font-medium text-amber-950">{label}</label>
+        <label className="text-sm font-medium text-slate-950">{label}</label>
         <button
           type="button"
           onClick={addRow}
-          className="rounded-md border border-amber-900/20 bg-white px-2 py-1 text-xs font-medium text-amber-900"
+          className="rounded-md border border-slate-900/20 bg-white px-2 py-1 text-xs font-medium text-slate-900"
         >
           Add spec row
         </button>
       </div>
 
-      <div className="space-y-2 rounded-xl border border-amber-900/15 bg-orange-50/60 p-3">
+      <div className="space-y-2 rounded-xl border border-slate-900/15 bg-slate-50/60 p-3">
         {rows.map((row, index) => (
           <div key={index} className="grid gap-2 sm:grid-cols-[1fr_1fr_auto]">
             <input
               value={row.key}
               onChange={(event) => updateRow(index, "key", event.target.value)}
               placeholder="Spec key (e.g. Resolution)"
-              className="rounded-lg border border-amber-900/20 bg-white px-3 py-2"
+              className="rounded-lg border border-slate-900/20 bg-white px-3 py-2"
             />
             <input
               value={row.value}
               onChange={(event) => updateRow(index, "value", event.target.value)}
               placeholder="Spec value (e.g. 3440x1440)"
-              className="rounded-lg border border-amber-900/20 bg-white px-3 py-2"
+              className="rounded-lg border border-slate-900/20 bg-white px-3 py-2"
             />
             <button
               type="button"
