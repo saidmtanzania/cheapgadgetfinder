@@ -92,3 +92,14 @@ model Article {
   published Boolean  @default(false)
   createdAt DateTime @default(now())
 }
+
+model VisitorSession {
+  id         String   @id @default(uuid())
+  visitorId  String   @unique
+  currentPath String
+  pageViews  Int      @default(0)
+  referrer   String?
+  userAgent  String?
+  firstSeenAt DateTime @default(now())
+  lastSeenAt DateTime @default(now())
+}
