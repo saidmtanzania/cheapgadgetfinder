@@ -17,6 +17,10 @@ export default function DisclosurePage() {
           we may earn a commission if you click through and make a purchase, at no extra cost to you.
         </p>
         <p>
+          Current affiliate platforms include Amazon, eBay, Alibaba, and AliExpress. Available merchants can change
+          over time based on pricing and program terms.
+        </p>
+        <p>
           We also display third-party advertisements (including Google AdSense). Ads are labeled as advertisement and
           are intended to support ongoing operations of this website.
         </p>

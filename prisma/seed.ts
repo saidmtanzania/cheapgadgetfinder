@@ -108,6 +108,8 @@ async function main() {
 
   const amazon = await prisma.platform.findUnique({ where: { slug: "amazon" } });
   const aliexpress = await prisma.platform.findUnique({ where: { slug: "aliexpress" } });
+  const ebay = await prisma.platform.findUnique({ where: { slug: "ebay" } });
+  const alibaba = await prisma.platform.findUnique({ where: { slug: "alibaba" } });
   const lgBrand = await prisma.brand.findUnique({ where: { slug: "lg" } });
 
   if (!amazon) {
@@ -115,6 +117,12 @@ async function main() {
   }
   if (!aliexpress) {
     throw new Error("AliExpress platform missing after seed upsert");
+  }
+  if (!ebay) {
+    throw new Error("eBay platform missing after seed upsert");
+  }
+  if (!alibaba) {
+    throw new Error("Alibaba platform missing after seed upsert");
   }
   if (!lgBrand) {
     throw new Error("LG brand missing after seed upsert");
@@ -212,6 +220,66 @@ async function main() {
     });
   }
 
+  const ebayPrice = await prisma.productPrice.findFirst({
+    where: {
+      productId: sampleProduct.id,
+      platformId: ebay.id,
+    },
+  });
+
+  if (ebayPrice) {
+    await prisma.productPrice.update({
+      where: { id: ebayPrice.id },
+      data: {
+        price: 534,
+        currency: "USD",
+        url: "https://ebay.com/itm/example-msi-mag-346cq",
+        affiliateUrl: "https://rover.ebay.com/rover/1/711-53200-19255-0/1?mpre=https://ebay.com/itm/example-msi-mag-346cq",
+      },
+    });
+  } else {
+    await prisma.productPrice.create({
+      data: {
+        price: 534,
+        currency: "USD",
+        url: "https://ebay.com/itm/example-msi-mag-346cq",
+        affiliateUrl: "https://rover.ebay.com/rover/1/711-53200-19255-0/1?mpre=https://ebay.com/itm/example-msi-mag-346cq",
+        productId: sampleProduct.id,
+        platformId: ebay.id,
+      },
+    });
+  }
+
+  const alibabaPrice = await prisma.productPrice.findFirst({
+    where: {
+      productId: secondProduct.id,
+      platformId: alibaba.id,
+    },
+  });
+
+  if (alibabaPrice) {
+    await prisma.productPrice.update({
+      where: { id: alibabaPrice.id },
+      data: {
+        price: 612,
+        currency: "USD",
+        url: "https://www.alibaba.com/product-detail/example-lg-ultragear-34gn850",
+        affiliateUrl: "https://www.alibaba.com/product-detail/example-lg-ultragear-34gn850?spm=affiliate-demo",
+      },
+    });
+  } else {
+    await prisma.productPrice.create({
+      data: {
+        price: 612,
+        currency: "USD",
+        url: "https://www.alibaba.com/product-detail/example-lg-ultragear-34gn850",
+        affiliateUrl: "https://www.alibaba.com/product-detail/example-lg-ultragear-34gn850?spm=affiliate-demo",
+        productId: secondProduct.id,
+        platformId: alibaba.id,
+      },
+    });
+  }
+
   await prisma.article.upsert({
     where: { slug: "best-monitor-for-rtx-4060" },
     update: {
@@ -249,6 +317,63 @@ async function main() {
       trackingId: "cheapgadgetfinder-20",
       productId: sampleProduct.id,
       platformId: amazon.id,
+    },
+  });
+
+  await prisma.affiliateLink.upsert({
+    where: { id: "seed-ebay-monitor-link" },
+    update: {
+      label: "eBay MSI MAG Deal",
+      url: "https://rover.ebay.com/rover/1/711-53200-19255-0/1?mpre=https://ebay.com/itm/example-msi-mag-346cq",
+      trackingId: "ebay-campaign-01",
+      productId: sampleProduct.id,
+      platformId: ebay.id,
+    },
+    create: {
+      id: "seed-ebay-monitor-link",
+      label: "eBay MSI MAG Deal",
+      url: "https://rover.ebay.com/rover/1/711-53200-19255-0/1?mpre=https://ebay.com/itm/example-msi-mag-346cq",
+      trackingId: "ebay-campaign-01",
+      productId: sampleProduct.id,
+      platformId: ebay.id,
+    },
+  });
+
+  await prisma.affiliateLink.upsert({
+    where: { id: "seed-alibaba-lg-link" },
+    update: {
+      label: "Alibaba LG UltraGear Offer",
+      url: "https://www.alibaba.com/product-detail/example-lg-ultragear-34gn850?spm=affiliate-demo",
+      trackingId: "alibaba-affiliate-demo",
+      productId: secondProduct.id,
+      platformId: alibaba.id,
+    },
+    create: {
+      id: "seed-alibaba-lg-link",
+      label: "Alibaba LG UltraGear Offer",
+      url: "https://www.alibaba.com/product-detail/example-lg-ultragear-34gn850?spm=affiliate-demo",
+      trackingId: "alibaba-affiliate-demo",
+      productId: secondProduct.id,
+      platformId: alibaba.id,
+    },
+  });
+
+  await prisma.affiliateLink.upsert({
+    where: { id: "seed-aliexpress-lg-link" },
+    update: {
+      label: "AliExpress LG UltraGear Offer",
+      url: "https://aliexpress.com/example-lg-ultragear-34gn850?aff_fcid=cheapgadgetfinder",
+      trackingId: "cheapgadgetfinder",
+      productId: secondProduct.id,
+      platformId: aliexpress.id,
+    },
+    create: {
+      id: "seed-aliexpress-lg-link",
+      label: "AliExpress LG UltraGear Offer",
+      url: "https://aliexpress.com/example-lg-ultragear-34gn850?aff_fcid=cheapgadgetfinder",
+      trackingId: "cheapgadgetfinder",
+      productId: secondProduct.id,
+      platformId: aliexpress.id,
     },
   });
 }
