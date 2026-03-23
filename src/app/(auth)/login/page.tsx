@@ -42,10 +42,6 @@ export default function LoginPage() {
       <section className="w-full max-w-md rounded-2xl border border-slate-900/10 bg-white/90 p-8">
         <h1 className="text-2xl font-semibold tracking-tight text-slate-950">Admin Login</h1>
         <p className="mt-2 text-sm text-slate-900/70">Sign in to manage products, prices, and SEO articles.</p>
-        <div className="mt-4 rounded-xl border border-slate-900/15 bg-slate-50 px-3 py-2 text-xs text-slate-900/75">
-          Admin account is environment-based, not database-seeded. Use <span className="font-semibold">ADMIN_EMAIL</span> and <span className="font-semibold">ADMIN_PASSWORD</span> from your .env file.
-        </div>
-
         <form className="mt-6 space-y-4" onSubmit={onSubmit}>
           <label className="block text-sm text-slate-950">
             Email
