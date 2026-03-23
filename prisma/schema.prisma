@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Category {
+  id        String     @id @default(uuid())
+  name      String
+  slug      String     @unique
+  parentId  String?
+  parent    Category?  @relation("CategoryTree", fields: [parentId], references: [id])
+  children  Category[] @relation("CategoryTree")
+  products  Product[]
+  createdAt DateTime   @default(now())
+}
+
+model Brand {
+  id       String    @id @default(uuid())
+  name     String
+  slug     String    @unique
+  products Product[]
+}
+
+model Product {
+  id          String         @id @default(uuid())
+  name        String
+  slug        String         @unique
+  description String?
+  image       String?
+  youtubeReviewUrl String?
+  brandId     String
+  brand       Brand          @relation(fields: [brandId], references: [id])
+  categoryId  String
+  category    Category       @relation(fields: [categoryId], references: [id])
+  specs       ProductSpec[]
+  prices      ProductPrice[]
+  affiliateLinks AffiliateLink[]
+  createdAt   DateTime       @default(now())
+}
+
+model ProductSpec {
+  id        String  @id @default(uuid())
+  key       String
+  value     String
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model Platform {
+  id     String         @id @default(uuid())
+  name   String
+  slug   String         @unique
+  prices ProductPrice[]
+  affiliateLinks AffiliateLink[]
+}
+
+model ProductPrice {
+  id           String   @id @default(uuid())
+  price        Float
+  currency     String
+  url          String
+  affiliateUrl String
+  productId    String
+  product      Product  @relation(fields: [productId], references: [id])
+  platformId   String
+  platform     Platform @relation(fields: [platformId], references: [id])
+  updatedAt    DateTime @updatedAt
+}
+
+model AffiliateLink {
+  id         String    @id @default(uuid())
+  label      String
+  url        String
+  trackingId String?
+  productId  String?
+  product    Product?  @relation(fields: [productId], references: [id])
+  platformId String?
+  platform   Platform? @relation(fields: [platformId], references: [id])
+  createdAt  DateTime  @default(now())
+}
+
+model Article {
+  id        String   @id @default(uuid())
+  title     String
+  slug      String   @unique
+  content   String
+  seoTitle  String?
+  seoDesc   String?
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
